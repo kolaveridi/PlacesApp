@@ -6,6 +6,8 @@ const INITIAL_STATE={
   selectedPlace:null
 }
 const reducer =(action,state=INITIAL_STATE) =>{
+  console.log('INside reducer');
+  console.log(action);
   switch(action.type){
     case ADD_PLACE:
     return {

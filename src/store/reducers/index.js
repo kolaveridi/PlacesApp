@@ -4,7 +4,7 @@ import PlacesReducer from './places.js';
 
 
 const rootReducer = combineReducers({
-    places:   PlacesReducer
+    places:  PlacesReducer
 });
 
 const configureStore = () => {

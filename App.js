@@ -5,31 +5,39 @@ import PlaceInput from "./src/components/PlaceInput";
 import PlaceList from "./src/components/PlaceList";
 import PlaceImage from "./src/assets/download.jpeg";
 import PlaceDetail from "./src/components/PlaceDetail";
-import configureStore from './src/store/reducers/index.js';
+//import configureStore from './src/store/reducers/index.js';
 import {Provider} from 'react-redux';
 import {createStore} from 'redux';
 import {connect} from 'react-redux';
-import {addPLace,deletePlace,selectPlace,deselectPlace} from './src/store/actions/index.js';
-const store=configureStore();
+import {addPLace,deletePlace,selectedPlace,deselectPlace} from './src/store/actions';
+
+//const store=configureStore();
+
 class App extends React.Component {
 
    placeAddedHandler =val=>{
+     console.log('Val is ',val);
+     console.log(val);
     this.props.onAddPlace(val);
   };
 
   placeSelectHandler =id=>{
+    console.log('id is');
     this.props.onSelectPlace(id);
   };
   placeDeleteHandler =() =>{
+    console.log('inside delete handler');
   this.props.onDeletePlace();
   };
   modelClosedHandler =() =>{
+    console.log('iinside close handler');
     this.props.onDeslectPlace();
   }
 
   render() {
+    console.log('Inside render function');
     return (
-       <Provider store={store}>
+
       <View style={styles.container}>
       <PlaceInput onPlaceAdded={this.placeAddedHandler}/>
       <PlaceList places={this.props.places} onItemSelected={this.placeSelectHandler}/>
@@ -39,7 +47,7 @@ class App extends React.Component {
       onModalClosed={this.modelClosedHandler}
       />
       </View>
-      </Provider>
+
     );
   }
 }
@@ -54,6 +62,8 @@ const styles = StyleSheet.create({
   },
 });
 const mapStateToProps=state => {
+  console.log('Inside mapStateToProps ');
+  console.log(state );
   return {
     places:state.places.places,
     selectedPlace:state.places.selectPlace
@@ -63,8 +73,8 @@ const mapDispatchToProps = dispatch =>{
   return {
    onAddPlace:(name)=>dispatch(addPLace(name)),
    onDeletePlace:()=>dispatch(deletePlace()),
-   onSelectPlace:(id)=>dispatch(selectPlace(id)),
-   onDeslectPlace:()=>dispatch(onDeslectPlace())
+   onSelectPlace:(id)=>dispatch(selectedPlace(id)),
+   onDeslectPlace:()=>dispatch(deselectPlace())
   };
 }
 

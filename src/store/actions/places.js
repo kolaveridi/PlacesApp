@@ -1,7 +1,8 @@
 import {ADD_PLACE,DELETE_PLACE,DESELECT_PLACE,SELECT_PLACE} from './actiontypes';
 
 export const addPLace =(placeName) =>{
-
+  console.log('addPLace is being dispatched now');
+   console.log('In addPLace reducer');
   return{
     type:ADD_PLACE,
     payload:{
