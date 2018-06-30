@@ -1,6 +1,14 @@
-import {combineReducers} from 'redux';
+import { createStore, combineReducers } from 'redux';
+
 import PlacesReducer from './places.js';
 
-export default combineReducers({
-   places:PlacesReducer
+
+const rootReducer = combineReducers({
+    places:   PlacesReducer
 });
+
+const configureStore = () => {
+    return createStore(rootReducer);
+};
+
+export default configureStore;

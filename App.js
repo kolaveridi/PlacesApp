@@ -5,11 +5,12 @@ import PlaceInput from "./src/components/PlaceInput";
 import PlaceList from "./src/components/PlaceList";
 import PlaceImage from "./src/assets/download.jpeg";
 import PlaceDetail from "./src/components/PlaceDetail";
-import reducers from './src/store/reducers/index.js';
+import configureStore from './src/store/reducers/index.js';
 import {Provider} from 'react-redux';
 import {createStore} from 'redux';
 import {connect} from 'react-redux';
 import {addPLace,deletePlace,selectPlace,deselectPlace} from './src/store/actions/index.js';
+const store=configureStore();
 class App extends React.Component {
 
    placeAddedHandler =val=>{
@@ -28,7 +29,7 @@ class App extends React.Component {
 
   render() {
     return (
-       <Provider store={createStore(reducers)}>
+       <Provider store={store}>
       <View style={styles.container}>
       <PlaceInput onPlaceAdded={this.placeAddedHandler}/>
       <PlaceList places={this.props.places} onItemSelected={this.placeSelectHandler}/>

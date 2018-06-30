@@ -5,7 +5,7 @@ const INITIAL_STATE={
   places:[],
   selectedPlace:null
 }
-const reducer =(state=INITIAL_STATE,action) =>{
+const reducer =(action,state=INITIAL_STATE) =>{
   switch(action.type){
     case ADD_PLACE:
     return {
