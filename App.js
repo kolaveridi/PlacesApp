@@ -4,9 +4,11 @@ import ListItem from './src/components/ListItem';
 import PlaceInput from "./src/components/PlaceInput";
 import PlaceList from "./src/components/PlaceList";
 import PlaceImage from "./src/assets/download.jpeg";
+import PlaceDetail from "./src/components/PlaceDetail";
 export default class App extends React.Component {
   state={
-    places:[]
+    places:[],
+    selectedPlace:null
   }
 
    placeAddedHandler =val=>{
@@ -22,21 +24,41 @@ export default class App extends React.Component {
     });
   };
 
-  placeDeleteHandler =id=>{
+  placeSelectHandler =id=>{
     this.setState(prevState =>{
       return{
-        places:prevState.places.filter((place)=>{
-          return place.key===id;
+        selectedPlace:prevState.places.find(place=>{
+          return place.key ===id;
         })
       };
     });
+  };
+  placeDeleteHandler =() =>{
+    this.setState(prevState => {
+      return {
+        places:prevState.places.filter(place =>{
+          return place.key !== prevState.selectedPlace.key;
+        }),
+        selectedPlace: null
+      };
+    });
+  };
+  modelClosedHandler =() =>{
+    this.setState({
+      selectedPlace:null
+    })
   }
 
   render() {
     return (
       <View style={styles.container}>
       <PlaceInput onPlaceAdded={this.placeAddedHandler}/>
-      <PlaceList places={this.state.places} onItemDelted={this.placeDeleteHandler}/>
+      <PlaceList places={this.state.places} onItemSelected={this.placeSelectHandler}/>
+      <PlaceDetail
+      selectedPlace={this.state.selectedPlace}
+      onItemDeleted={this.placeDeleteHandler}
+      onModalClosed={this.modelClosedHandler}
+      />
       </View>
     );
   }

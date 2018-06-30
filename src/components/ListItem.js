@@ -21,7 +21,8 @@ const styles=StyleSheet.create({
     alignItems:"center"
   },
   placeImage:{
-    marginRight:8
+    marginRight:8,
+
   }
 });
 export default ListItem;
