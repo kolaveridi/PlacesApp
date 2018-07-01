@@ -5,7 +5,7 @@ const INITIAL_STATE={
   places:[],
   selectedPlace:null
 }
-const reducer =(action,state=INITIAL_STATE) =>{
+const PlacesReducer =(action,state=INITIAL_STATE) =>{
   console.log('INside reducer');
   console.log(action);
   switch(action.type){
@@ -43,4 +43,4 @@ const reducer =(action,state=INITIAL_STATE) =>{
         return state;
   }
 }
-export default reducer;
+export default PlacesReducer;
